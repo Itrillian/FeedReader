@@ -2,7 +2,6 @@ package itrillian.feedreader.rss;
 
 import static itrillian.feedreader.rss.RssParserFactory.getParserInstance;
 import static itrillian.feedreader.rss.RssUtil.getSchema;
-import itrillian.feedreader.rss.RssParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,7 @@ public class RssParserTest {
 
 	@Test
 	public void parseFeedTest() throws ParserConfigurationException, SAXException, IOException {
-		File file = new File("src/test/resources/itrillian/feedreader/rss/testRssFeed.xml");
+		File file = new File("src/test/resources/itrillian/feedreader/rss/atom/RssAtomTest.xml");
 		String schema = getSchema(file);
 		RssParser parser = getParserInstance(schema);
 		parser.parseFeed(file);
