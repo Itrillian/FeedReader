@@ -1,5 +1,7 @@
 package itrillian.feedreader.rss;
 
+import itrillian.feedreader.rss.atom.RssAtomParser;
+
 public class RssParserFactory {
 
 	public static RssParser getParserInstance(String schema) {
