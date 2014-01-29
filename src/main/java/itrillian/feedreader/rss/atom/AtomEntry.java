@@ -8,4 +8,7 @@ public class AtomEntry extends AtomBase {
 	
 	@XmlElement(name="published")
 	private Date published;
+	
+	@XmlElement(name="summary")
+	private String summary;
 }
