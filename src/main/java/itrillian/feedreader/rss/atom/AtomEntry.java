@@ -6,9 +6,24 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class AtomEntry extends AtomBase {
 	
-	@XmlElement(name="published")
 	private Date published;
-	
-	@XmlElement(name="summary")
 	private String summary;
+
+	@XmlElement(name="published")
+	public Date getPublished() {
+		return published;
+	}
+
+	public void setPublished(Date published) {
+		this.published = published;
+	}
+
+	@XmlElement(name="summary")
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 }

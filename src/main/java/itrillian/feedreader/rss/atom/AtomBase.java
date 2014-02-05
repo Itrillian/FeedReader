@@ -9,16 +9,45 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class AtomBase {
 
-	@XmlElement(name="id")
 	private String id;
-	
-	@XmlElement(name="title")
 	private String title;
-	
-	@XmlElement(name="updated")
 	private Date updated;
-	
+	private String link;
+
+	@XmlElement(name="id")
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@XmlElement(name="title")
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@XmlElement(name="updated")
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
 	@XmlElement(name="link")
 	@XmlJavaTypeAdapter(LinkAdapter.class)
-	private String link;
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
 }
