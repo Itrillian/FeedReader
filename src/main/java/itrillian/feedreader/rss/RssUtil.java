@@ -16,12 +16,12 @@ import org.xml.sax.SAXException;
 
 public class RssUtil {
 
-	public static String getSchema(File file) throws ParserConfigurationException, SAXException, IOException {
-		return DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file).getDocumentElement().getAttribute(SCHEMA);
-	}
-	
-	public static RssFeed parseFeedFromFile(File file) throws ParserConfigurationException, SAXException, IOException {
-		return getParserInstance(getSchema(file)).parseFeed(file);
+	public static String getSchema(File file) throws ParseException {
+		try {
+			return getSchema(getDocumentBuilder().parse(file));
+		} catch (SAXException | IOException e) {
+			throw new ParseException(e);
+		}
 	}
 
 	public static String getSchema(URL url) throws ParseException {
@@ -44,4 +44,7 @@ public class RssUtil {
 		}
 	}
 
+	public static RssFeed parseFeedFromFile(File file) throws ParseException {
+		return getParserInstance(getSchema(file)).parseFeed(file);
+	}
 }

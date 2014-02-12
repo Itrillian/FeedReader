@@ -1,5 +1,6 @@
 package itrillian.feedreader.rss.atom;
 
+import itrillian.feedreader.rss.ParseException;
 import itrillian.feedreader.rss.RssParser;
 
 import java.io.ByteArrayOutputStream;
@@ -17,7 +18,7 @@ public class RssAtomParser implements RssParser {
 	private static final Logger LOGGER = LogManager.getLogger(RssAtomParser.class);
 
 	@Override
-	public AtomFeed parseFeed(File file) {
+	public AtomFeed parseFeed(File file) throws ParseException {
 		AtomFeed atomFeed = null;
 		try {
 			JAXBContext context = JAXBContext.newInstance(AtomFeed.class);
@@ -31,7 +32,7 @@ public class RssAtomParser implements RssParser {
 	        	LOGGER.debug("\n" + output);
 	        }
 		} catch(JAXBException e) {
-			e.printStackTrace();
+			throw new ParseException(e);
 		}
 		return atomFeed;
 	}

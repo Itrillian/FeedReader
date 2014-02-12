@@ -6,21 +6,17 @@ import itrillian.feedreader.rss.atom.AtomEntry;
 import itrillian.feedreader.rss.atom.AtomFeed;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 public class RssParserTest {
 
 	@Test
-	public void parseFeedTest() throws ParserConfigurationException, SAXException, IOException {
+	public void parseFeedTest() throws ParseException {
 		AtomFeed atomFeed = (AtomFeed) parseFeedFromFile(new File("src/test/resources/itrillian/feedreader/rss/atom/RssAtomTest.xml"));
 		AtomEntry entry = atomFeed.getEntries().get(0);
-		
+
 		/*
 		 * Validate feed
 		 */
@@ -29,7 +25,7 @@ public class RssParserTest {
 		assertEquals(new Date(1071340202000l), atomFeed.getUpdated());
 		assertEquals("urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6", atomFeed.getId());
 		assertEquals("John Doe", atomFeed.getAuthor().getName());
-		
+
 		/*
 		 * Validate entry
 		 */

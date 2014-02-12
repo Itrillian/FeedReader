@@ -4,6 +4,6 @@ import java.io.File;
 
 public interface RssParser {
 
-	public RssFeed parseFeed(File file);
-	
+	public RssFeed parseFeed(File file) throws ParseException;
+
 }
