@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+    <display-name>FeedReader</display-name>
+    <filter>
+        <filter-name>FeedReader</filter-name>
+        <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+        <init-param>
+          <param-name>applicationClassName</param-name>
+          <param-value>itrillian.jetty.WicketApplication</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>FeedReader</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+</web-app>
