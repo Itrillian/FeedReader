@@ -8,7 +8,6 @@ import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,26 +15,24 @@ import org.apache.logging.log4j.Logger;
 public class RssAtomParser implements RssParser {
 
 	private static final Logger LOGGER = LogManager.getLogger(RssAtomParser.class);
-	
+
 	@Override
 	public AtomFeed parseFeed(File file) {
-		AtomFeed atom = null;
+		AtomFeed atomFeed = null;
 		try {
-			JAXBContext jc = JAXBContext.newInstance(AtomFeed.class);
-	
-	        Unmarshaller unmarshaller = jc.createUnmarshaller();
-	        atom = (AtomFeed) unmarshaller.unmarshal(file);
-	
+			JAXBContext context = JAXBContext.newInstance(AtomFeed.class);
+	        atomFeed = (AtomFeed) context.createUnmarshaller().unmarshal(file);
+
 	        if(LOGGER.isDebugEnabled()) {
 	        	ByteArrayOutputStream output = new ByteArrayOutputStream();
-	        	Marshaller marshaller = jc.createMarshaller();
+	        	Marshaller marshaller = context.createMarshaller();
 		        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	        	marshaller.marshal(atom, output);
+	        	marshaller.marshal(atomFeed, output);
 	        	LOGGER.debug("\n" + output);
 	        }
 		} catch(JAXBException e) {
 			e.printStackTrace();
 		}
-		return atom;
+		return atomFeed;
 	}
 }
